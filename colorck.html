@@ -79,7 +79,7 @@
                   length  : 0.1,
                   width   : 2,
                   cap     : "round",
-                  color   : "#dd3c3c",
+                  color   : "#FFF",
                   ratio   : 0.2
               }
           }
@@ -198,17 +198,17 @@
       //    context.moveTo(center.x - Math.sin(angle) * len * hands.minute.ratio, center.y + Math.cos(angle) * len * hands.minute.ratio);
       //    context.lineTo(center.x + Math.sin(angle) * len, center.y - Math.cos(angle) * len);
       //    context.stroke();
-      //
-      //    // 秒針を描画する
-      //    angle = Math.PI * s / 30;
-      //    len = radius * hands.second.length;
-      //    context.beginPath();
-      //    context.lineWidth = hands.second.width;
-      //    context.lineCap = hands.second.cap;
-      //    context.strokeStyle = hands.second.color;
-      //    context.moveTo(center.x - Math.sin(angle) * len * hands.second.ratio, center.y + Math.cos(angle) * len * hands.second.ratio);
-      //    context.lineTo(center.x + Math.sin(angle) * len, center.y - Math.cos(angle) * len);
-      //    context.stroke();
+
+         // 秒針を描画する
+         angle = Math.PI * s / 30;
+         len = radius * hands.second.length;
+         context.beginPath();
+         context.lineWidth = hands.second.width;
+         context.lineCap = hands.second.cap;
+         context.strokeStyle = hands.second.color;
+         context.moveTo(center.x - Math.sin(angle) * len * hands.second.ratio, center.y + Math.cos(angle) * len * hands.second.ratio);
+         context.lineTo(center.x + Math.sin(angle) * len, center.y - Math.cos(angle) * len);
+         context.stroke();
       }
 
       function hsvToRGB(hue, saturation, value) {
