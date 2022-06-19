@@ -86,10 +86,8 @@
 
           // キャンバスを設定する
           var canvas = document.getElementById("canvas");
-      //    canvas.width = $(window).width();
-      //    canvas.height = $(window).height();
-          canvas.width = 720;
-          canvas.height = 720;
+          canvas.width = 360;
+          canvas.height = 360;
           var context = canvas.getContext("2d");
           var center = {
               x: Math.floor(canvas.width / 2),
@@ -161,7 +159,7 @@
 
           // 文字盤
           context.save();
-          context.font        = "80px 'sans-serif'";
+          context.font        = 40 + "px 'sans-serif'";
           context.textAlign   ="center";
           context.textBaseline    ="middle";
           context.fillStyle   = "rgb(0, 0, 0)";
@@ -170,8 +168,8 @@
           for (var i = 1; i < 13; i++) {
               var radian = i * Math.PI / 6;
               context.fillStyle = hsvToRgb2(360*(1-i/12),1,1)
-              var x = center.x + 245 * Math.sin(radian);
-              var y = center.y - 245 * Math.cos(radian);
+              var x = center.x + 120 * Math.sin(radian);
+              var y = center.y - 120 * Math.cos(radian);
               var text = "" + (i == 0 ? "12" : i);
               context.fillText(text, x, y);
           }
