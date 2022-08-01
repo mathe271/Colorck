@@ -43,6 +43,31 @@
               }
           };
 
+          // 針のスタイルを定義する
+          var hands = {
+              hour: {
+                  length  : 0.97,
+                  width   : 3,
+                  cap     : "round",
+                  color   : "#FF0000",
+                  ratio   : 0.05
+              },
+              minute: {
+                  length  : 0.97,
+                  width   : 3,
+                  cap     : "round",
+                  color   : "#00FF00",
+                  ratio   : 0.05
+              },
+              second: {
+                  length  : 0.97,
+                  width   : 3,
+                  cap     : "round",
+                  color   : "#0000FF",
+                  ratio   : 0.05
+              }
+          }
+
           // キャンバスを設定する
           var canvas = document.getElementById("canvas");
           canvas.width = 360;
@@ -109,6 +134,40 @@
           //drawSector(context, center.x, center.y, radius * circle.ColorWheel.radius, sortAngleList[2][0] - Math.PI * (1 / 2), sortAngleList[0][0] - Math.PI * (1 / 2), false, toColor(color));
 
           drawSector(context, center.x, center.y, radius * circle.ColorWheel.radius, sortAngleList[2][0] - Math.PI * (1 / 2), 360 * (Math.PI/180) - Math.PI * (1 / 2), false, toColor(color));
+
+          // 時針を描画する
+          angle = Math.PI * (h + m / 60) / 6;
+          len = radius * hands.hour.length;
+          context.beginPath();
+          context.lineWidth = hands.hour.width;
+          context.lineCap = hands.hour.cap;
+          context.strokeStyle = hands.hour.color;
+          context.moveTo(center.x - Math.sin(angle) * len * hands.hour.ratio, center.y + Math.cos(angle) * len * hands.hour.ratio);
+          context.lineTo(center.x + Math.sin(angle) * len, center.y - Math.cos(angle) * len);
+          context.stroke();
+
+          // 分針を描画する
+          angle = Math.PI * (m + s / 60) / 30;
+          len = radius * hands.minute.length;
+          context.beginPath();
+          context.lineWidth = hands.minute.width;
+          context.lineCap = hands.minute.cap;
+          context.strokeStyle = hands.minute.color;
+          context.moveTo(center.x - Math.sin(angle) * len * hands.minute.ratio, center.y + Math.cos(angle) * len * hands.minute.ratio);
+          context.lineTo(center.x + Math.sin(angle) * len, center.y - Math.cos(angle) * len);
+          context.stroke();
+
+          // 秒針を描画する
+          angle = Math.PI * s / 30;
+          len = radius * hands.second.length;
+          context.beginPath();
+          context.lineWidth = hands.second.width;
+          context.lineCap = hands.second.cap;
+          context.strokeStyle = hands.second.color;
+          context.moveTo(center.x - Math.sin(angle) * len * hands.second.ratio, center.y + Math.cos(angle) * len * hands.second.ratio);
+          context.lineTo(center.x + Math.sin(angle) * len, center.y - Math.cos(angle) * len);
+          context.stroke();
+
       }
 
       // 扇型描写関数
@@ -149,3 +208,7 @@
 
 </body>
 </html>
+
+<!-- 参考にしたサイト
+https://qiita.com/okuchan/items/3c6908c5c90e5a70deab
+-->
